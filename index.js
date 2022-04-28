@@ -8,17 +8,18 @@ const jar = new CookieJar();
 const URL = require('url');
 
 const DDOSGuard = class {
-
+    #endpoints;
+    #session;
     constructor() {
-        this.endpoints = {"check": "https://check.ddos-guard.net/check.js"};
+        this.#endpoints = {"check": "https://check.ddos-guard.net/check.js"};
 
-        this.session = wrapper(axios.create({ jar }));
+        this.#session = wrapper(axios.create({ jar }));
         axios.defaults.headers.common['user-agent'] = 'DDOS-GUARD Bypasser';
 
     }
 
     async #get_check(){
-        return await (await this.session.get(this.endpoints["check"])).data;
+        return await (await this.#session.get(this.#endpoints["check"])).data;
     }
 
     #parse_check(check){
@@ -32,10 +33,10 @@ const DDOSGuard = class {
     }
 
     async #src_validator(domain, src){
-        await this.session.get(`${domain}${src}`);
+        await this.#session.get(`${domain}${src}`);
     }
 
-    get = async (url, headers = {}) => {
+    async get(url, headers = {}) {
         
         const check = await this.#get_check();
 
@@ -46,7 +47,7 @@ const DDOSGuard = class {
 
         axios.defaults.headers.common['user-agent'] = headers;
 
-        return await this.session.get(url);
+        return await this.#session.get(url);
     } 
 }
 
