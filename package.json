@@ -1,0 +1,18 @@
+{
+  "name": "bypass-ddos-guard",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/tough-cookie": "^4.0.2",
+    "axios": "^0.27.2",
+    "axios-cookiejar-support": "^2.0.4",
+    "tough-cookie": "^4.0.0"
+  }
+}
